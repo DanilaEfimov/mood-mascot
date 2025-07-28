@@ -1,0 +1,24 @@
+my-mascot-extension/
+│
+├── manifest.json
+├── popup.html
+├── popup.js
+├── content_script.js
+├── icons/
+│   └── icon.png
+└── mascots/
+    ├── cat/
+    │   ├── happy.gif
+    │   ├── neutral.png
+    │   ├── sad.gif
+    │   └── surprised.gif
+    ├── dog/
+    │   ├── happy.gif
+    │   ├── neutral.png
+    │   ├── sad.gif
+    │   └── surprised.gif
+    └── robot/
+        ├── happy.gif
+        ├── neutral.png
+        ├── sad.gif
+        └── surprised.gif
