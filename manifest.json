@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "extension for customize Your browser with own mascots",
   "icons": {
-    "16": "assets/icons/icon16.png"
+    "64": "assets/icons/icon64.png"
   },
   "permissions": ["storage", "tabs"],
   "action": {

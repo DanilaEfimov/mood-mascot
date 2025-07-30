@@ -1,32 +1,68 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Popup</title>
-  <style>
-    body {
-      min-width: 200px;
-      min-height: 100px;
-      font-family: Arial, sans-serif;
-      padding: 10px;
-      background: #f0f0f0;
-    }
-    button {
-      padding: 8px 12px;
-      font-size: 14px;
-      cursor: pointer;
-    }
-  </style>
+  <title>Mood Mascot</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h3>Моё расширение</h3>
-  <button id="btnGreet">Поздороваться</button>
+  <h3 class="center">Mood Mascot</h3>
+
+  <label for="mascot_combobox">Choose a character:</label>
+  <select id="mascot_combobox" name="mascot">
+    <!-- options will be added here -->
+  </select>
+
+  <div>
+    <h2 class="center">or</h2>
+  </div>
+
+  <label for="newMascot">Create Your own:</label>
+  <input type="text" id="newMascot" placeholder="New character name" />
+  <button id="addMascotBtn">Add Character</button>
+
+  <button id="btnGreet">Say Hi</button>
 
   <script>
-    document.getElementById('btnGreet').addEventListener('click', () => {
-      console.log('Привет из popup!');
-      alert('Привет из popup!');
+    const select = document.getElementById('mascot_combobox');
+    const input = document.getElementById('newMascot');
+    const addBtn = document.getElementById('addMascotBtn');
+    const greetBtn = document.getElementById('btnGreet');
+
+    let mascots = JSON.parse(localStorage.getItem('mascots')) || ['Derpy Hooves'];
+
+    function renderOptions() {
+      select.innerHTML = '';
+      mascots.forEach(name => {
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = name;
+        select.appendChild(option);
+      });
+    }
+
+    addBtn.addEventListener('click', () => {
+      const newName = input.value.trim();
+      if (newName && !mascots.includes(newName)) {
+        mascots.push(newName);
+        localStorage.setItem('mascots', JSON.stringify(mascots));
+        renderOptions();
+        input.value = '';
+      } else if (mascots.includes(newName)) {
+        alert("This character is already in the list.");
+      }
     });
+
+    greetBtn.addEventListener('click', () => {
+      const selected = select.value;
+      if (selected) {
+        alert(`Hi from ${selected}!`);
+      } else {
+        alert("Please select a character first.");
+      }
+    });
+
+    renderOptions();
   </script>
 </body>
 </html>
